@@ -16,8 +16,14 @@ public class Comment {
     private int author;
 
     @NotBlank
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_POST01"),name="post_id")
+    private Post post;
 
-    private Long blogpost;
+    @NotBlank
+    @ManyToOne
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_USER01"),name="user_id")
+    private Users users;
 
     @NotBlank
     @Lob
@@ -39,12 +45,20 @@ public class Comment {
         this.author = author;
     }
 
-    public Long getBlogpost() {
-        return blogpost;
+    public Post getPost() {
+        return post;
     }
 
-    public void setBlogpost(Long blogpost) {
-        this.blogpost = blogpost;
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public String getTexto() {

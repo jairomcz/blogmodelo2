@@ -21,6 +21,7 @@ private String titulo;
 @NotBlank
 private String autor;
 
+
 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy")
 private LocalDate data;
 
@@ -28,45 +29,57 @@ private LocalDate data;
 @Lob
 private String texto;
 
-public Long getId() {
-	return id;
-}
 
-public void setId(Long id) {
-	this.id = id;
-}
+@ManyToOne
+@JoinColumn(name="user_id")
+@NotBlank(message = "O campo não pode ser vázio ou nulo")
+private Post post_id;
 
-public String getTitulo() {
-	return titulo;
-}
+	public Long getId() {
+		return id;
+	}
 
-public void setTitulo(String titulo) {
-	this.titulo = titulo;
-}
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-public String getAutor() {
-	return autor;
-}
+	public String getTitulo() {
+		return titulo;
+	}
 
-public void setAutor(String autor) {
-	this.autor = autor;
-}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-public LocalDate getData() {
-	return data;
-}
+	public String getAutor() {
+		return autor;
+	}
 
-public void setData(LocalDate data) {
-	this.data = data;
-}
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
 
-public String getTexto() {
-	return texto;
-}
+	public LocalDate getData() {
+		return data;
+	}
 
-public void setTexto(String texto) {
-	this.texto = texto;
-}
+	public void setData(LocalDate data) {
+		this.data = data;
+	}
 
-	
+	public String getTexto() {
+		return texto;
+	}
+
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
+
+	public Post getPost_id() {
+		return post_id;
+	}
+
+	public void setPost_id(Post post_id) {
+		this.post_id = post_id;
+	}
 }

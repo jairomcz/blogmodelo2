@@ -1,6 +1,7 @@
 package com.blog.blogmodelo.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -11,15 +12,22 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-
+    @NotBlank
     private String email;
 
+    @NotBlank
     private String age;
 
+    @NotBlank
     private String name;
 
-    @OneToMany
-    private List<Post> post;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "post_id")
+    List<Comment> comment;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    List<Users> users;
 
     public Long getId() {
         return id;
@@ -53,4 +61,19 @@ public class Users {
         this.name = name;
     }
 
+    public List<Comment> getComment() {
+        return comment;
+    }
+
+    public void setComment(List<Comment> comment) {
+        this.comment = comment;
+    }
+
+    public List<Users> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<Users> users) {
+        this.users = users;
+    }
 }

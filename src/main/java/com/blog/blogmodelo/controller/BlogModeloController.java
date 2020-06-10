@@ -2,7 +2,7 @@ package com.blog.blogmodelo.controller;
 
 
 import com.blog.blogmodelo.model.Post;
-import com.blog.blogmodelo.service.BlogModeloService;
+import com.blog.blogmodelo.service.BlogModeloPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -13,8 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
-import javax.print.attribute.standard.PresentationDirection;
-import javax.swing.*;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
@@ -23,7 +21,7 @@ import java.util.List;
 public class BlogModeloController {
 
     @Autowired
-    BlogModeloService blogmodeloservice;
+    BlogModeloPostService blogmodeloservice;
 
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
     public ModelAndView getPosts(){
@@ -45,6 +43,7 @@ public class BlogModeloController {
     public  String getPostForm(){
         return "postForm";
     }
+
     @RequestMapping(value = "/novopost", method = RequestMethod.POST)
     public  String savePost(@Valid Post post, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) {

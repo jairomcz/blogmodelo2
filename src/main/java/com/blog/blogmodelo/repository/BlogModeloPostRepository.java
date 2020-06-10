@@ -9,6 +9,6 @@ import com.blog.blogmodelo.model.Post;
 
 
 @Repository
-public interface BlogModeloRepository extends JpaRepository<Post, Long>{
-
+public interface BlogModeloPostRepository extends JpaRepository<Post, Long>{
+Post findBy(long id);
 }
