@@ -16,7 +16,6 @@ public class BlogModeloPostServiceImpl implements BlogModeloPostService {
 	@Autowired
     BlogModeloPostRepository blogmodelopostrepository;
 
-
 	@Override
 	public List<Post> findAll() {
 		return blogmodelopostrepository.findAll();
@@ -26,6 +25,7 @@ public class BlogModeloPostServiceImpl implements BlogModeloPostService {
 	public Post findById(long id) {
 
 		return blogmodelopostrepository.findById(id).get();
+
 	}
 
 	@Override

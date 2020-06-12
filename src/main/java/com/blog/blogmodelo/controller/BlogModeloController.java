@@ -46,6 +46,7 @@ public class BlogModeloController {
 
     @RequestMapping(value = "/novopost", method = RequestMethod.POST)
     public  String savePost(@Valid Post post, BindingResult result, RedirectAttributes attributes) {
+        attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
         if (result.hasErrors()) {
             return "redirect:/novopost";
         }

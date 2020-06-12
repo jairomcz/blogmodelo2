@@ -32,8 +32,8 @@ private String texto;
 
 @ManyToOne
 @JoinColumn(name="user_id")
-@NotBlank(message = "O campo não pode ser vázio ou nulo")
-private Post post_id;
+@NotBlank
+private Post user_id;
 
 	public Long getId() {
 		return id;
@@ -75,11 +75,11 @@ private Post post_id;
 		this.texto = texto;
 	}
 
-	public Post getPost_id() {
-		return post_id;
+	public Post getUser_id() {
+		return user_id;
 	}
 
-	public void setPost_id(Post post_id) {
-		this.post_id = post_id;
+	public void setUser_id(Post user_id) {
+		this.user_id = user_id;
 	}
 }
