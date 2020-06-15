@@ -15,24 +15,24 @@ public class Post {
 @GeneratedValue(strategy = GenerationType.AUTO)
 private Long id;
 
-@NotBlank
+@NotBlank(message = "O campo precisa ser preenchido")
 private String titulo;
 
-@NotBlank
+@NotBlank(message = "O campo precisa ser preenchido")
 private String autor;
 
 
 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy")
 private LocalDate data;
 
-@NotBlank
+@NotBlank(message = "O campo precisa ser preenchido")
 @Lob
 private String texto;
 
 
 @ManyToOne
 @JoinColumn(name="user_id")
-@NotBlank
+@NotBlank(message = "O campo precisa ser preenchido")
 private Post user_id;
 
 	public Long getId() {

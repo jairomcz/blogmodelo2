@@ -18,15 +18,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-public class BlogModeloController {
+public class BlogModeloPostController {
 
     @Autowired
-    BlogModeloPostService blogmodeloservice;
+    BlogModeloPostService blogmodelopostservice;
 
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
     public ModelAndView getPosts(){
         ModelAndView mv = new ModelAndView("posts");
-        List<Post> posts = blogmodeloservice.findAll();
+        List<Post> posts = blogmodelopostservice.findAll();
         mv.addObject("posts", posts);
         return mv;
     }
@@ -34,7 +34,7 @@ public class BlogModeloController {
     @RequestMapping(value = "/posts/{id}", method = RequestMethod.GET)
     public ModelAndView getPost(@PathVariable("id") long id){
         ModelAndView mv = new ModelAndView("postDetalhes");
-       Post post = blogmodeloservice.findById(id);
+       Post post = blogmodelopostservice.findById(id);
         mv.addObject("post", post);
         return mv;
     }
@@ -49,10 +49,11 @@ public class BlogModeloController {
         attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios foram preenchidos!");
         if (result.hasErrors()) {
             return "redirect:/novopost";
+        } else {
+            post.setData(LocalDate.now());
+            blogmodelopostservice.save(post);
+            return "redirect:/posts";
         }
-        post.setData(LocalDate.now());
-        blogmodeloservice.save(post);
-        return "redirect:/posts";
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)

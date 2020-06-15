@@ -1,33 +1,84 @@
 package com.blog.blogmodelo.model;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name="USERS")
-public class Users {
+//@Table(name="USERS")
+public class Users implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "teste1")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "teste1")
     private String age;
 
-    @NotBlank
+    @NotBlank(message = "teste1")
     private String name;
 
+    @NotBlank(message = "usuário não pode ficar em branco")
+    private String userName;
+
+    @NotBlank(message = "Senha não pode ficar em branco")
+    private String password;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "user_id")
     List<Comment> comment;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
-    List<Users> users;
+    List<Post> post;
+
+    @NotBlank(message = "teste1")
+    private boolean active;
+
+    private String roles;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
 
     public Long getId() {
         return id;
@@ -61,6 +112,18 @@ public class Users {
         this.name = name;
     }
 
+//    public String getUserName() {
+//        return userName;
+//    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public List<Comment> getComment() {
         return comment;
     }
@@ -69,11 +132,19 @@ public class Users {
         this.comment = comment;
     }
 
-    public List<Users> getUsers() {
-        return users;
+    public List<Post> getPost() {
+        return post;
     }
 
-    public void setUsers(List<Users> users) {
-        this.users = users;
+    public void setPost(List<Post> post) {
+        this.post = post;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

@@ -1,0 +1,41 @@
+<DOCTYPY html>
+    <html  xmlns:th="http://thymelaf.org">
+    <html>
+    <head>
+        <title>Blog Modelo</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    </head>
+    <body>
+    <header>
+        <th:block th:include="nav"> </th:block>
+    </header>
+    <section>
+        <div class="container" style="width: 60%; padding-bottom: 30px; padding-top: 26px;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/admin">Admin</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Usuários</li>
+                </ol>
+            </nav>
+            <div class="card" th:each="users : ${users}" style="padding-bottom: 26px;">
+                <div class="card text-center">
+                    <div class="card-header" style="text-align: left;">
+                    <span>Usuários Cadastrados </span>
+                    </div>
+                    <div class="card-body">
+                        <a  th:href="@{/admin/users/{codigo}(codigo = ${users.id}) }"><h5 class="card-title"> <span th:text="${users.name}"></span></h5></a>
+                        <a  th:href="@{/admin/users/{codigo}(codigo = ${users.id}) }"><span th:text="${users.usuario}"></span></a>
+                        <a  th:href="@{/admin/users/{codigo}(codigo = ${users.id}) }"><span th:text="${users.email}"></span></a>
+                    </div>
+                    <div class="card-footer text-muted">
+                    </div>
+                </div>
+            </div>
+    </section>
+    <footer>
+        <th:block th:include="footer"> </th:block>
+    </footer>
+    </body>
+
+    </html>
