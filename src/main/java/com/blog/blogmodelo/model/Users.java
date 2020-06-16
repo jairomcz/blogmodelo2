@@ -51,12 +51,12 @@ public class Users implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     @Override
     public String getUsername() {
-        return userName;
+        return this.userName;
     }
 
     @Override

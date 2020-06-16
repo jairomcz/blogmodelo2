@@ -9,7 +9,7 @@ public class BlogmodeloApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BlogmodeloApplication.class, args);
-
+		System.out.print(new BCryptPasswordEncoder().encode("jalaska"));
 	}
 
 }
