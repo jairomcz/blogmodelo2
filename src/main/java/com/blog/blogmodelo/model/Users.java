@@ -42,11 +42,19 @@ public class Users implements UserDetails {
     @NotBlank(message = "teste1")
     private boolean active;
 
-    private String roles;
+    @ManyToMany
+    @JoinTable(
+            name = "users_role",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "nomeRole"))
+    private List<Role> roles;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return (Collection<? extends GrantedAuthority>) this.roles;
     }
 
     @Override
