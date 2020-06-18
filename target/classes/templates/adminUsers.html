@@ -25,7 +25,7 @@
                     </div>
                     <div class="card-body">
                         <a  th:href="@{/admin/users/{codigo}(codigo = ${users.id}) }"><h5 class="card-title"> <span th:text="${users.name}"></span></h5></a>
-                        <a  th:href="@{/admin/users/{codigo}(codigo = ${users.id}) }"><span th:text="${users.usuario}"></span></a>
+                        <a  th:href="@{/admin/users/{codigo}(codigo = ${users.id}) }"><span th:text="${users.username}"></span></a>
                         <a  th:href="@{/admin/users/{codigo}(codigo = ${users.id}) }"><span th:text="${users.email}"></span></a>
                     </div>
                     <div class="card-footer text-muted">
