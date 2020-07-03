@@ -1,7 +1,7 @@
 package com.blog.blogmodelo.service;
 
-import com.blog.blogmodelo.model.Role;
 import com.blog.blogmodelo.model.Users;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

@@ -27,6 +27,11 @@
                         <a  th:href="@{/admin/users/{codigo}(codigo = ${users.id}) }"><h5 class="card-title"> <span th:text="${users.name}"></span></h5></a>
                         <a  th:href="@{/admin/users/{codigo}(codigo = ${users.id}) }"><span th:text="${users.username}"></span></a>
                         <a  th:href="@{/admin/users/{codigo}(codigo = ${users.id}) }"><span th:text="${users.email}"></span></a>
+                        <span th:text="${users.roles}"></span>
+                        <select id="estilo" class="form-control" th:field="*{role}">
+                            <option value="">Selecione o estilo</option>
+                            <option th:each="role : ${role}" value=1 th:text="${role.nomeRole}"></option>
+                        </select>
                     </div>
                     <div class="card-footer text-muted">
                     </div>

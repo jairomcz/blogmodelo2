@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-//@Table(name="USERS")
+@Table(name="USERS")
 public class Users implements UserDetails {
 
     @Id
@@ -42,15 +42,27 @@ public class Users implements UserDetails {
     @NotBlank(message = "teste1")
     private boolean active;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "users_role",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "nomeRole"))
+                    name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -84,7 +96,7 @@ public class Users implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return this.active;
     }
 
 
@@ -155,4 +167,6 @@ public class Users implements UserDetails {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+
 }

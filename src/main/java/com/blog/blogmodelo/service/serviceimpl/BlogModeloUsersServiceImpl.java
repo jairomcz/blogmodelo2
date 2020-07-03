@@ -1,6 +1,5 @@
 package com.blog.blogmodelo.service.serviceimpl;
 
-import com.blog.blogmodelo.model.Role;
 import com.blog.blogmodelo.model.Users;
 import com.blog.blogmodelo.repository.BlogModeloUsersRepository;
 import com.blog.blogmodelo.service.BlogModeloUsersService;

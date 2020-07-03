@@ -1,16 +1,12 @@
 package com.blog.blogmodelo.repository;
 
-
-
+import com.blog.blogmodelo.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.blog.blogmodelo.model.Post;
-
-
+import java.util.List;
 
 @Repository
-public interface BlogModeloPostRepository extends JpaRepository<Post, Long>{
-
+public interface BlogModeloRoleRepository extends JpaRepository<Role, Long> {
 
 }
